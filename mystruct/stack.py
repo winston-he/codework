@@ -15,7 +15,7 @@ class Stack:
     def push(self, val):
         self._s.append(val)
 
-    def pop(self) -> int:
+    def pop(self):
         if not self._s:
             raise ValueError("The stack is empty")
         return self._s.pop()

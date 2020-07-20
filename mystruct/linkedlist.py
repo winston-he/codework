@@ -18,6 +18,15 @@ class SinglyLinkedNode(_Node):
         self.val = val
         self.next = None
 
+    def get_list(self):
+        l = []
+        curr = self
+        while curr:
+            l.append(curr.val)
+            curr = curr.next
+        return l
+    def __str__(self):
+        return str(self.val)
 
 class DoublyLinkedNode(_Node):
     def __init__(self, val):
