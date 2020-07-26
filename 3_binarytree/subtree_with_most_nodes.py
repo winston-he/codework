@@ -26,22 +26,19 @@ def subtree_most_nodes(root: BinaryTreeNode):
             return None, 0
         left_bst_root, left_bst_size = postorder(root.left, 0)
         right_bst_root, right_bst_size = postorder(root.right, 0)
-
-        curr_bst_root, curr_bst_size = None, 0
-        if root.left == left_bst_root and root.right == right_bst_root:
-            if root.left and root.right:
-                if root.val >= root.left.val and root.val <= root.right.val:
-                    curr_bst_root, curr_bst_size = root, max(max_size, left_bst_size + right_bst_size + 1)
-            elif root.left:
-                if root.val >= root.left.val:
-                    curr_bst_root, curr_bst_size = root, max(max_size, left_bst_root + 1)
-            elif root.right:
-                if root.val <= root.right.val:
-                    curr_bst_root, curr_bst_size = root, max(max_size, right_bst_root + 1)
-        elif left_bst_size > right_bst_size:
-            curr_bst_root, curr_bst_size = left_bst_root, max(max_size, left_bst_size)
+        curr_bst_root, curr_bst_size = root, 1
+        if root.left and root.left == left_bst_root:
+            curr_bst_size += left_bst_size
         else:
-            curr_bst_root, curr_bst_size = right_bst_root, max(max_size, right_bst_size)
+            if left_bst_size > curr_bst_size:
+                curr_bst_root = left_bst_root
+                curr_bst_size = left_bst_size
+        if root.right and root.right == right_bst_root:
+            curr_bst_size += right_bst_size
+        else:
+            if right_bst_size > curr_bst_size:
+                curr_bst_root = right_bst_root
+                curr_bst_size = right_bst_size
 
         return curr_bst_root, curr_bst_size
 

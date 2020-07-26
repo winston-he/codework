@@ -37,13 +37,35 @@ def random_full_binary_tree():
     pass
 
 
+def bfs(root: BinaryTreeNode):
+    from collections import deque
+    q = deque()
+    q.append(root)
+    while len(q):
+        queue_len = len(q)
+        while queue_len:
+            curr = q.popleft()
+            print(curr.val)
+            if curr.left:
+                q.append(curr.left)
+            if curr.right:
+                q.append(curr.right)
+            queue_len -= 1
+
+def inorder_recursive(root: BinaryTreeNode):
+    if not root:
+        return
+    inorder_recursive(root.left)
+    print(root.val)
+    inorder_recursive(root.right)
+
 def test_tree():
-    root = BinaryTreeNode(1)
-    root.left = BinaryTreeNode(2)
-    root.right = BinaryTreeNode(3)
-    root.left.left = BinaryTreeNode(4)
-    root.left.right = BinaryTreeNode(5)
+    root = BinaryTreeNode(5)
+    root.left = BinaryTreeNode(3)
+    root.right = BinaryTreeNode(7)
+    root.left.left = BinaryTreeNode(2)
+    root.left.right = BinaryTreeNode(4)
     root.right.left = BinaryTreeNode(6)
-    root.right.right = BinaryTreeNode(7)
-    root.right.right.right = BinaryTreeNode(8)
+    root.right.right = BinaryTreeNode(8)
+    root.left.left.left = BinaryTreeNode(1)
     return root
