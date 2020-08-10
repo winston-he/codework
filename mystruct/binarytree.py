@@ -67,5 +67,10 @@ def test_tree():
     root.left.right = BinaryTreeNode(4)
     root.right.left = BinaryTreeNode(6)
     root.right.right = BinaryTreeNode(8)
-    root.left.left.left = BinaryTreeNode(1)
+    # root.left.left.left = BinaryTreeNode(1)
+    # root.left.left.right = BinaryTreeNode(9)
+
+    # root.left.right.left = BinaryTreeNode(9)
+    # root.left.right.right = BinaryTreeNode(10)
+    # root.right.left.left = BinaryTreeNode(11)
     return root
