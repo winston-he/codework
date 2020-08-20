@@ -48,5 +48,3 @@ def str_to_num(s: str) -> int:
         return 0
     return res if neg else -res
 
-
-print(str_to_num('2147483647'))
