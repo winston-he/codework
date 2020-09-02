@@ -18,8 +18,9 @@ def split_string(s: str) -> int:
     is_palin = [[False for _ in range(len(s))] for _ in range(len(s))]
     # 初始化为无穷大
     dp = [float("inf")] * (len(s)+1)
-    dp[0] = -1
 
+    # 当字符串为空串时，应当为-1
+    dp[0] = -1
     for i in range(1, len(s)+1):
         for j in range(1, i+1):
             # s[i..j]为回文的条件
