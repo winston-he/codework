@@ -21,17 +21,26 @@ from typing import List
 每遍历到一个元素(索引为i)，更新curr_sum, 并且看看字典中是否存在key: curr_sum-k，
 如果存在，说明sum(arr[d[curr_sum-k : i+1]])的值为k，更新max_len: max_len = max(max_len, i-d[curr_sum-k]+1)
 返回maxlen
+
+
+关键点：字典应该有初始值key:0, value:-1, 因为如果满足条件的子数组是从arr[0]开始的，不加入此值就会出错。
+比如：[1,2,3,3]
 """
 def max_len(arr: List[int], k: int) -> int:
     maxlen = curr_sum = 0
     d = {0: -1}
     for i, v in enumerate(arr):
         curr_sum += v
-        if curr_sum - k in d.keys():
+        if curr_sum - k in d:
             maxlen = max(maxlen, i - d[curr_sum - k])
-        if curr_sum not in d.keys():
+        if curr_sum not in d:
             d[curr_sum] = i
     return maxlen
 
 
-print(max_len([1, 2, 3, 3], 6))
+"""
+对于补充问题1，
+如果数组中所有正数都转换为1，所有负数都转换为-1，那么问题就等同于把原始问题的参数k设置为0；所以先做转换，再调用函数max_len即可
+
+补充问题2同理，把所有0转换为-1即可。
+"""
